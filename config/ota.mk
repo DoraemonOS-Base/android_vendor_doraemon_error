@@ -1,14 +1,14 @@
-ifeq ($(CUSTOM_BUILD_TYPE), OFFICIAL)
+ifeq ($(DORAEMON_BUILD_TYPE), OFFICIAL)
 
-CUSTOM_OTA_VERSION_CODE := ten
+DORAEMON_OTA_VERSION_CODE := Quiche
 
-CUSTOM_PROPERTIES += \
-    org.pixelexperience.ota.version_code=$(CUSTOM_OTA_VERSION_CODE)
+DORAEMON_PROPERTIES += \
+    org.pixelexperience.ota.version_code=$(DORAEMON_OTA_VERSION_CODE)
 
 PRODUCT_PACKAGES += \
     Updates
 
 PRODUCT_COPY_FILES += \
-    vendor/aosp/config/permissions/org.pixelexperience.ota.xml:system/etc/permissions/org.pixelexperience.ota.xml
+    vendor/doraemon/config/permissions/ro.doraemon.ota.xml:system/etc/permissions/ro.doraemon.ota.xml
 
 endif

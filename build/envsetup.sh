@@ -1,4 +1,4 @@
-function __print_custom_functions_help() {
+function __print_doraemon_functions_help() {
 cat <<EOF
 Additional functions:
 - cout:            Changes directory to out.
@@ -7,7 +7,7 @@ Additional functions:
 - mmmp:            Builds all of the modules in the supplied directories and pushes them to the device.
 - pixelgerrit:     A Git wrapper that fetches/pushes patch from/to PixelExperience Gerrit Review.
 - pixelrebase:     Rebase a Gerrit change and push it again.
-- aospremote:      Add git remote for matching AOSP repository.
+- doraemonremote:      Add git remote for matching DORAEMON repository.
 - cafremote:       Add git remote for matching CodeAurora repository.
 - githubremote:    Add git remote for PixelExperience Github.
 - mka:             Builds using SCHED_BATCH on all processors.
@@ -82,7 +82,7 @@ function breakfast()
                 variant="userdebug"
             fi
 
-            lunch aosp_$target-$variant
+            lunch doraemon_$target-$variant
         fi
     fi
     return $?
@@ -107,7 +107,7 @@ function eat()
             done
             echo "Device Found.."
         fi
-        if (adb shell getprop org.pixelexperience.device | grep -q "$CUSTOM_BUILD"); then
+        if (adb shell getprop org.pixelexperience.device | grep -q "$DORAEMON_BUILD"); then
             # if adbd isn't root we can't write to /cache/recovery/
             adb root
             sleep 1
@@ -123,7 +123,7 @@ EOF
             fi
             rm /tmp/command
         else
-            echo "The connected device does not appear to be $CUSTOM_BUILD, run away!"
+            echo "The connected device does not appear to be $DORAEMON_BUILD, run away!"
         fi
         return $?
     else
@@ -341,7 +341,7 @@ function installboot()
     sleep 1
     adb wait-for-online shell mount /system 2>&1 > /dev/null
     adb wait-for-online remount
-    if (adb shell getprop org.pixelexperience.device | grep -q "$CUSTOM_BUILD");
+    if (adb shell getprop org.pixelexperience.device | grep -q "$DORAEMON_BUILD");
     then
         adb push $OUT/boot.img /cache/
         if [ -e "$OUT/system/lib/modules/*" ];
@@ -356,7 +356,7 @@ function installboot()
         adb shell rm -rf /cache/boot.img
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $CUSTOM_BUILD, run away!"
+        echo "The connected device does not appear to be $DORAEMON_BUILD, run away!"
     fi
 }
 
@@ -390,14 +390,14 @@ function installrecovery()
     sleep 1
     adb wait-for-online shell mount /system 2>&1 >> /dev/null
     adb wait-for-online remount
-    if (adb shell getprop org.pixelexperience.device | grep -q "$CUSTOM_BUILD");
+    if (adb shell getprop org.pixelexperience.device | grep -q "$DORAEMON_BUILD");
     then
         adb push $OUT/recovery.img /cache/
         adb shell dd if=/cache/recovery.img of=$PARTITION
         adb shell rm -rf /cache/recovery.img
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $CUSTOM_BUILD, run away!"
+        echo "The connected device does not appear to be $DORAEMON_BUILD, run away!"
     fi
 }
 
@@ -743,7 +743,7 @@ function dopush()
         echo "Device Found."
     fi
 
-    if (adb shell getprop org.pixelexperience.device | grep -q "$CUSTOM_BUILD") || [ "$FORCE_PUSH" = "true" ];
+    if (adb shell getprop org.pixelexperience.device | grep -q "$DORAEMON_BUILD") || [ "$FORCE_PUSH" = "true" ];
     then
     # retrieve IP and PORT info if we're using a TCP connection
     TCPIPPORT=$(adb devices \
@@ -861,7 +861,7 @@ EOF
     rm -f $OUT/.log
     return 0
     else
-        echo "The connected device does not appear to be $CUSTOM_BUILD, run away!"
+        echo "The connected device does not appear to be $DORAEMON_BUILD, run away!"
     fi
 }
 
@@ -874,7 +874,7 @@ alias cmkap='dopush cmka'
 
 function repopick() {
     T=$(gettop)
-    $T/vendor/aosp/build/tools/repopick.py $@
+    $T/vendor/doraemon/build/tools/repopick.py $@
 }
 
 function fixup_common_out_dir() {

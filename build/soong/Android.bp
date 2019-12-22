@@ -1,14 +1,14 @@
 bootstrap_go_package {
-    name: "soong-aosp",
-    pkgPath: "aosp/soong/android",
+    name: "soong-doraemon",
+    pkgPath: "doraemon/soong/android",
     srcs: [
         "android/variable.go",
     ],
 }
 
 bootstrap_go_package {
-    name: "soong-custom-generator",
-    pkgPath: "aosp/soong/generator",
+    name: "soong-doraemon-generator",
+    pkgPath: "doraemon/soong/generator",
     deps: [
         "blueprint",
         "blueprint-pathtools",
@@ -23,7 +23,7 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-custom_generator {
+doraemon_generator {
     name: "generated_kernel_includes",
 
     // The headers make command

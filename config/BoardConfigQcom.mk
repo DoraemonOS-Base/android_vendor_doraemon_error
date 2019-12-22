@@ -1,4 +1,4 @@
-include vendor/aosp/config/BoardConfigQcomDefs.mk
+include vendor/doraemon/config/BoardConfigQcomDefs.mk
 
 BOARD_USES_ADRENO := true
 
@@ -7,14 +7,14 @@ ifneq ($(filter $(B_FAMILY) $(B64_FAMILY) $(BR_FAMILY),$(TARGET_BOARD_PLATFORM))
     TARGET_USES_QCOM_BSP := true
 endif
 
-# Tell HALs that we're compiling an AOSP build with an in-line kernel
+# Tell HALs that we're compiling an DoraemonOS build with an in-line kernel
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 
 ifneq ($(filter msm7x27a msm7x30 msm8660 msm8960,$(TARGET_BOARD_PLATFORM)),)
     TARGET_USES_QCOM_BSP_LEGACY := true
     # Enable legacy audio functions
     ifeq ($(BOARD_USES_LEGACY_ALSA_AUDIO),true)
-        USE_CUSTOM_AUDIO_POLICY := 1
+        USE_DORAEMON_AUDIO_POLICY := 1
     endif
 endif
 
